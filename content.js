@@ -21,12 +21,12 @@ async.series([
 							callback(null);
 						},
 						function(callback){
-							async.eachOf(wordArr, function(wordArrElm, index, callback) {
-								if (wordKeys.indexOf(wordArrElm) != -1) {
-									chrome.storage.sync.get(wordArrElm, function (result) {
-										var word = Object.keys(result)[0];
-										var wordVGified = result[word];
-										wordArr[index] = wordVGified[Math.floor(Math.random() * wordVGified.length)];
+							async.eachOf(wordArr, function(word, index, callback) {
+								if (wordKeys.indexOf(word) != -1) {
+									chrome.storage.sync.get(word, function (result) {
+										var wordToVG = Object.keys(result)[0];
+										var wordVGArr = result[wordToVG];
+										wordArr[index] = wordVGArr[Math.floor(Math.random() * wordVGArr.length)];
 									});
 								}
 							});
