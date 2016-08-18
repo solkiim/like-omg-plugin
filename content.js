@@ -21,13 +21,12 @@ async.series([
 							callback(null);
 						},
 						function(callback){
-							async.each(wordArr, function(wordArrElm, index, callback) {
+							async.eachOf(wordArr, function(wordArrElm, index, callback) {
 								if (wordKeys.indexOf(wordArrElm) != -1) {
 									chrome.storage.sync.get(wordArrElm, function (result) {
 										var word = Object.keys(result)[0];
 										var wordVGified = result[word];
 										wordArr[index] = wordVGified[Math.floor(Math.random() * wordVGified.length)];
-										console.log(wordArr[index]);
 									});
 								}
 							});
@@ -35,7 +34,6 @@ async.series([
 						},
 						function(callback){
 							var newText = wordArr.join("");
-							// console.log(newText);
 							if (newText !== origText) {
 								element.replaceChild(document.createTextNode(newText), n);
 							}

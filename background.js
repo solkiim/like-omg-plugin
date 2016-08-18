@@ -67,7 +67,7 @@ function initVGData() {
 		{"to": ["to, like,"]},
 		{"funny": ["sooooo funny - I'm literally dying -", "sooooo funny - I'm literally crying -", "sooooo funny - I'm literally screaming -", "sooooo funny - what is air??!!??!? -"]},
 		{", ": [", ", ", ", ", ", ", like, ", ", like actually, ", ", literally, ", ", dude, ", ", gurl, "]},
-		{". ": [".", ".", ".", ", dude.", ", man.", ", fer shure.", ", like, seriously.", ", I, like, #cantEVEN."]},
+		{". ": [". ", ". ", ". ", ", dude. ", ", man. ", ", fer shure. ", ", like, seriously. ", ". I, like, #cantEVEN. "]},
 		// {" ": [" ", " ", " ", " ", " ", " ", ", literally, ", " freakin ", " soooooo ", ", dude, ", ", gurl, "]},
 		{"! ": ["! ", "! ", "! ", "! Damn! ", "! OMG! ", "! Like, are you forreal?! ", "! Seriously!"]}
 	];
