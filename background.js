@@ -59,6 +59,7 @@ function initVGData() {
 	];
 	var wordKeys = [];
 	for (var i = 0; i < wordsToChange.length; i++) {
+		window.alert("gettinghere");
 		wordKeys.push(Object.keys(wordsToChange[i])[0]);
 		chrome.storage.local.set(wordsToChange[i]);
 	}
