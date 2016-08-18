@@ -27,11 +27,9 @@ async.series([
 							for (var k = 0; k < wordArr.length; k++) {
 								if (wordKeys.indexOf(wordArr[k]) != -1) {
 									chrome.storage.sync.get(wordArr[k], function (result) {
-										console.log(result);
 										var word = Object.keys(result)[0];
 										var wordVGified = result[word];
-										// wordArr[k] = wordVGified[Math.floor(Math.random() * wordVGified.length)];
-										// console.log(wordArr[k]);
+										wordArr[k] = wordVGified[Math.floor(Math.random() * wordVGified.length)];
 
 										// async.series([
 										// 	function(callback){
@@ -55,7 +53,7 @@ async.series([
 						},
 						function(callback){
 							var newText = wordArr.join("");
-							// console.log(newText);
+							console.log(newText);
 
 							if (newText !== origText) {
 								element.replaceChild(document.createTextNode(newText), n);
