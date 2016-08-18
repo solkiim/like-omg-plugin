@@ -1,57 +1,80 @@
+var wordKeys = [];
 var elements = document.getElementsByTagName('*');
 
-// var stopWords = new HashSet();
+async.series([
+	function(callback){
+		chrome.storage.sync.get("wordKeys", function (result) {
+			wordKeys = result["wordKeys"];
+		});
+		callback(null);
+	},
+	function(callback){
+		for (var i = 0; i < elements.length; i++) {
+			var element = elements[i];
 
+			for (var j = 0; j < element.childNodes.length; j++) {
+				var n = element.childNodes[j];
 
-for (var i = 0; i < elements.length; i++) {
-	var element = elements[i];
+				if (n.nodeType === 3) {
+					var origText = n.nodeValue;
+					var wordArr = origText.split(new RegExp("([\\s.,!?;:-]+)"));
 
-	for (var j = 0; j < element.childNodes.length; j++) {
-		var n = element.childNodes[j];
+					for (var k = 0; k < wordArr.length; k++) {
+						if (wordKeys.indexOf(wordArr[k]) != -1) {
+							chrome.storage.sync.get(wordArr[k], function (result) {
+								var word = Object.keys(result)[0];
+								var wordVGified = result[word];
+								wordArr[k] = wordVGified[Math.floor(Math.random() * wordVGified.length)];
+								console.log(wordArr[k]);
+							});
 
-		if (n.nodeType === 3) {
-			var origText = n.nodeValue;
+						}
+					}
 
-			var wordArr = origText.split(new RegExp("(\\s+)|(?!')(?=[[:punct:]])"));
-			// var wordArr = origText.split(new RegExp("[^\\w']+"));
-			console.log(wordArr);
-			// for (var k = 0; k < wordArr.length; k++) {
-			// 	console.log(wordArr[k]);
-			// }
+					var newText = wordArr.join("");
+					// console.log(newText);
 
-			// always replaced values
-			// var newText = origText.replace(new RegExp("really", "g"), "hella")
-			// 											.replace(new RegExp("can’t even", "g"), "#canteven")
-			// 											.replace(new RegExp("can’t", "g"), "#canteven")
-			// 											.replace(new RegExp("can't even", "g"), "#canteven")
-			// 											.replace(new RegExp("can't", "g"), "#canteven")
-			// 											.replace(new RegExp("coffee", "ig"), "venti Starbucks caramel frappuccino")
-			// 											.replace(new RegExp("good", "g"), "#selfieready")
-			// 											.replace(new RegExp("best friend", "g"), "#bffl")
-			// 											.replace(new RegExp("friend", "g"), "#bffl")
-			// 											.replace(new RegExp("is me", "g"), "is, like, sooooo me")
-			// 											.replace(new RegExp("I understand.", "g"), "I, like, totally get it.")
-			// 											.replace(new RegExp("I'm done", "g"), "I'm soooo done")
-			// 											.replace(new RegExp("don't like", "g"), "am sooooo over")
-			// 											.replace(new RegExp("doesn't like", "g"), "is sooooo over")
-			// 											.replace(new RegExp(" great", "g"), ", like, sooooo fetch")
-			// 											.replace(new RegExp("shoes", "g"), "uggs")
-			// 											.replace(new RegExp("pants", "g"), "leggings");
+					if (newText !== origText) {
+						element.replaceChild(document.createTextNode(newText), n);
+					}
 
-
-														// randomly add "literally" and "sooo" and "freakin"
-
-			// randomly replaced values
-			// newText = newText.replace(new RegExp(",", "g"), [",", ",", ",", ", like,"][Math.floor(Math.random() * 4)])
-			// 									.replace(new RegExp("totally", "g"), ["tooootally", "totes"][Math.floor(Math.random() * 2)])
-			// 									.replace(new RegExp("stop", "g"), ["stop, just stop", "get. out."][Math.floor(Math.random() * 2)])
-			// 									.replace(new RegExp("no way", "g"), ["nooooo freakin way", "no. way. get. out."][Math.floor(Math.random() * 2)])
-			// 									.replace(new RegExp("funny", "g"), ["sooooo funny - I'm literally dying -", "sooooo funny - I'm literally crying -", "sooooo funny - I'm literally screaming -", "sooooo funny - what is air??!!??!? -"][Math.floor(Math.random() * 4)]);
-												// .replace(new RegExp("\\."), [".", ".", ".", ", dude.", ", man.", ", fer shure.", ", like, seriously."][Math.floor(Math.random() * 7)])
-
-			if (newText !== origText) {
-				element.replaceChild(document.createTextNode(newText), n);
+				}
 			}
 		}
+		callback(null);
 	}
-}
+]);
+
+
+// var origText = "";
+// var wordArr = [];
+// async.series([
+// 	function(callback){
+// 		origText = n.nodeValue;
+// 		wordArr = origText.split(new RegExp("([\\s.,!?;:-]+)"));
+// 		callback(null);
+// 	},
+// 	function(callback){
+// 		console.log(wordArr.length);
+// 		for (var k = 0; k < wordArr.length; k++) {
+// 			if (wordKeys.indexOf(wordArr[k]) != -1) {
+// 				chrome.storage.sync.get(wordArr[k], function (result) {
+// 					var word = Object.keys(result)[0];
+// 					var wordVGified = result[word];
+// 					wordArr[k] = wordVGified[Math.floor(Math.random() * wordVGified.length)];
+// 					// console.log(wordArr[k]);
+// 				});
+// 			}
+// 		}
+// 		callback(null);
+// 	},
+// 	function(callback){
+// 		var newText = wordArr.join("");
+// 		// console.log(newText);
+//
+// 		if (newText !== origText) {
+// 			element.replaceChild(document.createTextNode(newText), n);
+// 		}
+// 		callback(null);
+// 	}
+// ]);

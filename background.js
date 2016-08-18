@@ -1,5 +1,6 @@
 var valleyGirlIfied = false;
 deValleyGirlIfy();
+initVGData();
 
 function deValleyGirlIfy(){
 	chrome.browserAction.setIcon({path:"inactivelogo.png"});
@@ -8,7 +9,9 @@ function deValleyGirlIfy(){
 
 function valleyGirlIfy(){
 	chrome.browserAction.setIcon({path:"activelogo.png"});
-	chrome.tabs.executeScript(null, {file: "content.js"});
+	chrome.tabs.executeScript(null, { file: "async.js" }, function() {
+		chrome.tabs.executeScript(null, { file: "content.js" });
+	});
 }
 
 function toggleState(){
@@ -42,7 +45,22 @@ function initVGData() {
 		{"doesn’t like": ["is sooooo over"]},
 		{"great": ["sooooo fetch"]},
 		{"shoes": ["uggs"]},
-		{"pants": ["leggings"]}
-]
-
+		{"pants": ["leggings"]},
+		{", ": [", ", ", ", ", ", ", like, "]},
+		{"so": ["soooo likeee"]},
+		{"totally": ["tooootally", "totes"]},
+		{"stop": ["stop, just stop", "get. out."]},
+		{"no way": ["nooooo freakin way", "no. way. get. out."]},
+		{"funny": ["sooooo funny - I'm literally dying -", "sooooo funny - I'm literally crying -", "sooooo funny - I'm literally screaming -", "sooooo funny - what is air??!!??!? -"]},
+		{". ": [".", ".", ".", ", dude.", ", man.", ", fer shure.", ", like, seriously.", ", I, like, #cantEVEN."]},
+		{" ": [" ", " ", " ", " ", " ", " ", ", literally, ", " freakin ", " soooooo ", ", dude, ", ", gurl, "]},
+		{"! ": ["! ", "! ", "! ", "! Damn! ", "! OMG! ", "! Like, are you forreal?! ", "! Seriously!"]},
+		{"girl": ["guuuuurl", "homegirl", "biatch"]}
+	];
+	var wordKeys = [];
+	for (var i = 0; i < wordsToChange.length; i++) {
+		wordKeys.push(Object.keys(wordsToChange[i])[0]);
+		chrome.storage.local.set(wordsToChange[i]);
+	}
+	chrome.storage.sync.set({"wordKeys": wordKeys});
 }
