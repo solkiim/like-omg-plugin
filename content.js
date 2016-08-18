@@ -13,8 +13,8 @@ async.series([
 			var element = elements[i];
 
 			async.each(element.childNodes, function(n, callback){
-				if (n.nodeType === 3) {
 
+				if (n.nodeType === 3) {
 					var origText = "";
 					var wordArr = [];
 					async.series([
@@ -30,22 +30,6 @@ async.series([
 										var word = Object.keys(result)[0];
 										var wordVGified = result[word];
 										wordArr[k] = wordVGified[Math.floor(Math.random() * wordVGified.length)];
-
-										// async.series([
-										// 	function(callback){
-										// 		word = Object.keys(result)[0];
-										// 		wordVGified = result[word];
-										// 		callback(null);
-										// 	},
-										// 	function(callback){
-										// 		wordArr[k] = wordVGified[Math.floor(Math.random() * wordVGified.length)];
-										// 		callback(null);
-										// 	},
-										// 	function(callback){
-										// 		console.log(wordArr[k]);
-										// 		callback(null);
-										// 	}
-										// ]);
 									});
 								}
 							}
@@ -53,10 +37,9 @@ async.series([
 						},
 						function(callback){
 							var newText = wordArr.join("");
-							console.log(newText);
-
+							// console.log(newText);
 							if (newText !== origText) {
-								element.replaceChild(document.createTextNode(newText), n);
+								elements[i].replaceChild(document.createTextNode(newText), n);
 							}
 							callback(null);
 						}
