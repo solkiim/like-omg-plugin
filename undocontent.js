@@ -8,7 +8,7 @@ for (var i = 0; i < elements.length; i++) {
 		var n = element.childNodes[j];
 
 		if (n.nodeType === 3) {
-			console.log(n.nodeValue)
+			// console.log(n.nodeValue)
 			element.replaceChild(document.createTextNode(n.nodeValue), n);
 		}
 	}
