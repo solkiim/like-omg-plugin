@@ -1,11 +1,24 @@
-chrome.browserAction.onClicked.addListener(function(activeTab) {
-    chrome.tabs.executeScript(null, {file: "content.js"});
-});
+var valleyGirlIfied = false;
+deValleyGirlIfy();
 
-// var alreadyExecuted = false;
-// chrome.browserAction.onClicked.addListener(function(activeTab) {
-// 	if (!alreadyExecuted) {
-// 		chrome.tabs.executeScript(null, {file: "content.js"});
-// 		alreadyExecuted = true;
-// 	}
-// });
+function deValleyGirlIfy(){
+	chrome.browserAction.setIcon({path:"inactivelogo.png"});
+	chrome.tabs.executeScript(null, {file: "undocontent.js"})
+}
+
+function valleyGirlIfy(){
+	chrome.browserAction.setIcon({path:"activelogo.png"});
+	chrome.tabs.executeScript(null, {file: "content.js"});
+}
+
+function toggleState(){
+	if(valleyGirlIfied){
+		valleyGirlIfied=false;
+		deValleyGirlIfy();
+	} else {
+		valleyGirlIfied=true;
+		valleyGirlIfy();
+	}
+}
+
+chrome.browserAction.onClicked.addListener(toggleState);
