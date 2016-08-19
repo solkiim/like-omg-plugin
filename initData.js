@@ -1,5 +1,5 @@
 function initVGData() {
-	var wordsToChange = [{"really": ["hella", "legit", "highkey"]},
+	var pivotArr = [{"really": ["hella", "legit", "highkey"]},
 		{"very": ["highkey", "hella", "legit", "V"]},
 		{"no": ["hell nah", "hell naw", "nope – bye Felicia –"]},
 		{"yes": ["yaaaas", "hell yah", "yaaaas bitchhhh"]},
@@ -81,10 +81,33 @@ function initVGData() {
 		// {" ": [" ", " ", " ", " ", " ", " ", ", literally, ", " freakin ", " soooooo ", ", dude, ", ", gurl, "]},
 		{"! ": ["! ", "! ", "! ", "! Damn! ", "! OMG! 😱😱😱 ", "! Like, are you forreal?! ", "! Seriously! 💁 "]}
 	];
+
+	// map to capitalized versions of the words
+	var cappedPivotArr = [];
+	var lowercase = new RegExp("/^[a-z]/");
+	for (var i = 0; i < pivotArr.length; i++) {
+		var word = Object.keys(pivotArr[i])[0];
+		var pivotVal = pivotArr[i][word];
+		word = capitalize(word);
+		for (var j = 0; j < pivotVal.length; j++) {
+			pivotVal[j] = capitalize(pivotVal[j])
+		}
+		var pivotMapping = {};
+		pivotMapping[word] = pivotVal;
+		cappedPivotArr.push(pivotMapping);
+	}
+	pivotArr = pivotArr.concat(cappedPivotArr);
+
+	// set all pivot values in chrome storage for access in content.js
 	var wordKeys = [];
-	for (var i = 0; i < wordsToChange.length; i++) {
-		wordKeys.push(Object.keys(wordsToChange[i])[0]);
-		chrome.storage.sync.set(wordsToChange[i]);
+	for (var i = 0; i < pivotArr.length; i++) {
+		wordKeys.push(Object.keys(pivotArr[i])[0]);
+		chrome.storage.sync.set(pivotArr[i]);
 	}
 	chrome.storage.sync.set({"wordKeys": wordKeys});
 }
+
+
+function capitalize(s) {
+	return s.charAt(0).toUpperCase() + s.slice(1);
+};
