@@ -47,7 +47,7 @@ function initVGData() {
 		{"eat": ["pig out"]},
 		{"destroy": ["trash"]},
 		{"close": ["tight"]},
-		{"the": ["the freakin", "the", "the, like,"]},
+		{"the": ["the freakin", "the freakin", "the", "the", "the, like,"]},
 		{"jewelry": ["bling💎💎💎"]},
 		{"about to": ["boutta", "finna", "gonna"]},
 		{"going to": ["boutta", "finna", "gonna"]},
@@ -76,7 +76,8 @@ function initVGData() {
 		{"to": ["to, like,"]},
 		{"funny": ["sooooo funny - I'm literally dying 😂😂😂 -", "sooooo funny - I'm literally crying 😂😂 -", "sooooo funny - I'm literally screaming 😂 -", "sooooo funny - what is air??!!??!? 😂😂😂😂 -"]},
 		{", ": [", ", ", ", ", ", ", like, ", ", like actually, ", ", literally, ", ", dude, ", ", bro, ", ", gurl, "]},
-		{". ": [". ", ". ", ". 💁 ", ". 💁 ", ". 💁 ", ", dude. ", ", bro. ", ", man. ", ", fer shure. 💁 ", ", like, seriously. 💁 ", ". I, like, #cantEVEN. 💁 ", ". #YOLO. 💁 "]},
+		{". ": [". ", ". ", ". 💁 ", ". 💁 ", ". 💁 ", ", dude. ", ", bro. ", ", gurl. 💁 ", ", fer shure. 💁 ", ", like, seriously. 💁 ", ". I, like, #cantEVEN. 💁 ", ". #YOLO. 💁 "]},
+		{".": [".", ".", ". 💁"]},
 		// {" ": [" ", " ", " ", " ", " ", " ", ", literally, ", " freakin ", " soooooo ", ", dude, ", ", gurl, "]},
 		{"! ": ["! ", "! ", "! ", "! Damn! ", "! OMG! 😱😱😱 ", "! Like, are you forreal?! ", "! Seriously! 💁 "]}
 	];
