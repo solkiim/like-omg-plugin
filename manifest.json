@@ -1,9 +1,9 @@
 {
 	"manifest_version" : 2,
 
-	"name": "#-ifier",
+	"name": "#OMGify",
 	"description": "An extension that, like, valley-girl-ifies, like #everything",
-  "version": "1.0",
+  "version": "0.1",
 
   "background" : {
     "scripts" : ["initData.js", "background.js"]
