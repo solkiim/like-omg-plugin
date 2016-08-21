@@ -1,4 +1,5 @@
 var valleyGirlIfied = false;
+var VGedTabs = {};
 deValleyGirlIfy();
 initVGData();
 
@@ -8,7 +9,7 @@ function deValleyGirlIfy(){
 	chrome.tabs.getSelected(null, function(tab) {
 		chrome.tabs.executeScript(tab.id, {code: "window.location.reload();"});
 	});
-	updateStorage(false);
+	VGedTabs[getTabID()] = false;
 }
 
 function valleyGirlIfy(){
@@ -17,15 +18,16 @@ function valleyGirlIfy(){
 	chrome.tabs.executeScript(null, {file: "async.js"}, function() {
 		chrome.tabs.executeScript(null, {file: "content.js"});
 	});
-	updateStorage(true);
+	VGedTabs[getTabID()] = true;
 }
 
 // update chrome storage on whether or not VG was activated on that tab
-function updateStorage(bool) {
+function getTabID() {
+	var curTabID = null;
 	chrome.tabs.query({active:true, windowType:"normal", currentWindow: true}, function(t){
-		var curTabID = t[0].id;
-		chrome.storage.sync.set({curTabID: bool});
+		curTabID = t[0].id;
 	});
+	return curTabID;
 }
 
 chrome.browserAction.onClicked.addListener(function(){
@@ -36,16 +38,13 @@ chrome.browserAction.onClicked.addListener(function(){
 	}
 });
 
-chrome.tabs.onUpdated.addListener(function(){
-	chrome.tabs.query({active:true, windowType:"normal", currentWindow: true}, function(t){
-		var curTabID = t[0].id;
-		chrome.storage.sync.set({curTabID: bool});
-	});
-});
-chrome.storage.sync.get("wordKeys", function (result) {
-	wordKeys = result["wordKeys"];
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
+	if (valleyGirlIfied && !VGedTabs[tabId]) {
+		window.alert("valleygirlifying");
+		valleyGirlIfy();
+	}
 });
 
-chrome.tabs.onRemoved.addListener(function(){
-	
+chrome.tabs.onRemoved.addListener(function(tabId, removeinfo){
+	delete VGedTabs[tabId];
 }
