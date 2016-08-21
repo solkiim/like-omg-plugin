@@ -73,6 +73,7 @@ function initVGData() {
 		{"respect": ["#respect🙌", "#respeck🙌"]},
 		{"outfit": ["#ootd👗"]},
 		{"so": ["soooo likeee"]},
+		{"some": ["sum", "sum, like,"]},
 		{"and": ["and, like,"]},
 		{"totally": ["tooootally", "totes"]},
 		{"stop": ["stop, just stop", "get. out."]},
