@@ -18,12 +18,10 @@ function valleyGirlIfy(){
 	});
 }
 
-function toggleState(){
+chrome.browserAction.onClicked.addListener(function(){
 	if (valleyGirlIfied){
 		deValleyGirlIfy();
 	} else {
 		valleyGirlIfy();
 	}
-}
-
-chrome.browserAction.onClicked.addListener(toggleState);
+});

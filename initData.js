@@ -77,26 +77,26 @@ function initVGData() {
 		{"funny": ["sooooo funny - I'm literally dying 😂😂😂 -", "sooooo funny - I'm literally crying 😂😂 -", "sooooo funny - I'm literally screaming 😂 -", "sooooo funny - what is air??!!??!? 😂😂😂😂 -"]},
 		{", ": [", ", ", ", ", ", ", like, ", ", like actually, ", ", literally, ", ", dude, ", ", bro, ", ", gurl, "]},
 		{". ": [". ", ". ", ". 💁 ", ". 💁 ", ". 💁 ", ", dude. ", ", bro. ", ", gurl. 💁 ", ", fer shure. 💁 ", ", like, seriously. 💁 ", ". I, like, #cantEVEN. 💁 ", ". #YOLO. 💁 "]},
-		{".": [".", ".", ". 💁"]},
+		// {".": [".", ".", ". 💁"]},
 		// {" ": [" ", " ", " ", " ", " ", " ", ", literally, ", " freakin ", " soooooo ", ", dude, ", ", gurl, "]},
-		{"! ": ["! ", "! ", "! ", "! Damn! ", "! OMG! 😱😱😱 ", "! Like, are you forreal?! ", "! Seriously! 💁 "]}
+		{"! ": ["! ", "!!!!!!!! ", "!!! ", "!!!! Damn! ", "! OMG! 😱😱😱 ", "!!!!!!!!!! Like, are you forreal?! ", "! Seriously! 💁 "]}
 	];
 
 	// map to capitalized versions of the words
-	var cappedPivotArr = [];
-	var lowercase = new RegExp("/^[a-z]/");
-	for (var i = 0; i < pivotArr.length; i++) {
-		var word = Object.keys(pivotArr[i])[0];
-		var pivotVal = pivotArr[i][word];
-		word = capitalize(word);
-		for (var j = 0; j < pivotVal.length; j++) {
-			pivotVal[j] = capitalize(pivotVal[j])
-		}
-		var pivotMapping = {};
-		pivotMapping[word] = pivotVal;
-		cappedPivotArr.push(pivotMapping);
-	}
-	pivotArr = pivotArr.concat(cappedPivotArr);
+	// var cappedPivotArr = [];
+	// var lowercase = new RegExp("/^[a-z]/");
+	// for (var i = 0; i < pivotArr.length; i++) {
+	// 	var word = Object.keys(pivotArr[i])[0];
+	// 	var pivotVal = pivotArr[i][word];
+	// 	word = capitalize(word);
+	// 	for (var j = 0; j < pivotVal.length; j++) {
+	// 		pivotVal[j] = capitalize(pivotVal[j])
+	// 	}
+	// 	var pivotMapping = {};
+	// 	pivotMapping[word] = pivotVal;
+	// 	cappedPivotArr.push(pivotMapping);
+	// }
+	// pivotArr = pivotArr.concat(cappedPivotArr);
 
 	// set all pivot values in chrome storage for access in content.js
 	var wordKeys = [];
@@ -106,8 +106,3 @@ function initVGData() {
 	}
 	chrome.storage.sync.set({"wordKeys": wordKeys});
 }
-
-
-function capitalize(s) {
-	return s.charAt(0).toUpperCase() + s.slice(1);
-};

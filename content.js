@@ -22,11 +22,17 @@ async.series([
 						},
 						function(callback){
 							async.eachOf(wordArr, function(word, index, callback) {
-								if (wordKeys.indexOf(word) != -1) {
-									chrome.storage.sync.get(word, function (result) {
+								lowerWord = word.toLowerCase();
+								if (wordKeys.indexOf(lowerWord) != -1) {
+									chrome.storage.sync.get(lowerWord, function (result) {
 										var wordToVG = Object.keys(result)[0];
 										var wordVGArr = result[wordToVG];
-										wordArr[index] = wordVGArr[Math.floor(Math.random() * wordVGArr.length)];
+										var replacementWord = wordVGArr[Math.floor(Math.random() * wordVGArr.length)];
+										if (/[A-Z]/.test(word)) {
+											wordArr[index] = capitalize(replacementWord);
+										} else {
+											wordArr[index] = replacementWord;
+										}
 									});
 								}
 							});
@@ -46,3 +52,7 @@ async.series([
 		callback(null);
 	}
 ]);
+
+function capitalize(s) {
+	return s.charAt(0).toUpperCase() + s.slice(1);
+};
