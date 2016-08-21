@@ -9,7 +9,7 @@
     "scripts" : ["initData.js", "background.js"]
   },
   "browser_action": {
-    "default_icon": "activelogo.png"
+    "default_icon": "inactivelogo.png"
   },
   "permissions": ["storage", "activeTab", "tabs", "http://*/*", "https://*/*"]
 }
