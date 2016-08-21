@@ -40,6 +40,7 @@ chrome.browserAction.onClicked.addListener(function(){
 
 // correct valleygirl activation on tab update/refresh/change
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
+	// TODO: change it so that correctVG doesnt include VGedTabs[tabId] because tab could stay same after refresh
 	if (info.status == "complete") {
 		correctVG(tabId);
 	}
