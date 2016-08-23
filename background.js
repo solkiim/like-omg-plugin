@@ -23,13 +23,13 @@ function valleyGirlIfy(){
 	chrome.tabs.executeScript(null, {file: "async.js"}, function() {
 		chrome.tabs.executeScript(null, {file: "content.js"});
 	});
-	// chrome.tabs.query({active:true, windowType:"normal", currentWindow: true}, function(t){
-	// 	curTabID = t[0].id;
-	// 	VGedTabs[curTabID] = true;
-	// 	chrome.tabs.sendMessage(curTabID, {vgTabId: curTabID}, function(response) {
-	// 		window.alert("sentmessage");
-	// 	});
-	// });
+	chrome.tabs.query({active:true, windowType:"normal", currentWindow: true}, function(t){
+		curTabID = t[0].id;
+		VGedTabs[curTabID] = true;
+		chrome.runtime.onConnect.addListener(function(port){
+			port.postMessage({vgTabId: curTabID});
+		});
+	});
 }
 
 // toggle valleygirl activation on ext icon click
@@ -45,7 +45,6 @@ chrome.browserAction.onClicked.addListener(function(){
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
 	if (changeInfo.status == "complete") {
 		if (valleyGirlIfied) {
-			window.alert("vg-ifying");
 			valleyGirlIfy();
 			VGedTabs[tabId] = true;
 		}

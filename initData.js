@@ -23,7 +23,7 @@ function initVGData() {
 		{"rejected": ["#curved😭🙅", "#swerved😭", "#dubbed😭"]},
 		{"calm down": ["chill😜", "chillax😜"]},
 		{"play": ["hang out", "netflix and chill"]},
-		{"excited": ["pumped😍😍😍", "hella excited😍😍", "amped😍"]},
+		{"excited": ["pumped😍😍😍", "hella hyped😍😍", "amped😍"]},
 		{"cutie": ["bae😍", "cutie😘", "babe", "hottie😍😘", "hunk"]},
 		{"boy": ["bae😍😘", "cutie", "babe😍😘😘", "hottie", "hunk"]},
 		{"girl": ["bae", "cutie", "babe😍😘", "hottie😘"]},
@@ -81,8 +81,6 @@ function initVGData() {
 		{"funny": ["sooooo funny - I'm literally dying 😂😂😂 -", "sooooo funny - I'm literally crying 😂😂 -", "sooooo funny - I'm literally screaming 😂 -", "sooooo funny - what is air??!!??!? 😂😂😂😂 -"]},
 		{", ": [", ", ", ", ", ", ", like, ", ", like actually, ", ", literally, ", ", dude, ", ", bro, ", ", gurl, "]},
 		{". ": [". ", ". ", ". 💁 ", ". 💁 ", ". 💁 ", ", dude. ", ", bro. ", ", gurl. 💁 ", ", fer shure. 💁 ", ", like, seriously. 💁 ", ". I, like, #cantEVEN. 💁 ", ". #YOLO. 💁 "]},
-		// {".": [".", ".", ". 💁"]},
-		// {" ": [" ", " ", " ", " ", " ", " ", ", literally, ", " freakin ", " soooooo ", ", dude, ", ", gurl, "]},
 		{"! ": ["! ", "!!!!!!!! ", "!!! ", "!!!! Damn! ", "! OMG! 😱😱😱 ", "!!!!!!!!!! Like, are you forreal?! ", "! Seriously! 💁 "]}
 	];
 
