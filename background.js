@@ -41,24 +41,31 @@ chrome.browserAction.onClicked.addListener(function(){
 	}
 });
 
-// correct valleygirl activation on tab update/refresh/change
+// // correct valleygirl activation on tab update/refresh/change
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
-	// TODO: change it so that correctVG doesnt include VGedTabs[tabId] because tab could stay same after refresh
-	if (info.status == "complete") {
-		correctVG(tabId);
+	if (changeInfo.status == "complete") {
+		if (valleyGirlIfied) {
+			window.alert("vg-ifying");
+			valleyGirlIfy();
+			VGedTabs[tabId] = true;
+		}
+		else {
+			// deValleyGirlIfy();
+			VGedTabs[tabId] = false;
+		}
 	}
 });
 
 // correct valleygirl activation on tab change
 chrome.tabs.onActivated.addListener(function(activeInfo){
-	window.alert(VGedTabs[activeInfo.tabId]);
+	// window.alert(VGedTabs[activeInfo.tabId]);
 	correctVG(activeInfo.tabId);
 });
 
-// delete tabId from tracker hashtable when tab removed
-chrome.tabs.onRemoved.addListener(function(tabId, removeinfo){
-	delete VGedTabs[tabId];
-}
+// // delete tabId from tracker hashtable when tab removed
+// chrome.tabs.onRemoved.addListener(function(tabId, removeinfo){
+// 	delete VGedTabs[tabId];
+// }
 
 // make sure tab is correctly VG-toggled
 function correctVG(tabId) {
