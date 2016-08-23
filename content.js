@@ -1,3 +1,8 @@
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+	console.log(sender.tab.id);
+	console.log(sender.tab.id);
+});
+
 var wordKeys = [];
 var elements = document.getElementsByTagName('*');
 
