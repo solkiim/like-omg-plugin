@@ -88,7 +88,7 @@ function initVGData() {
 	var wordKeys = [];
 	for (var i = 0; i < pivotArr.length; i++) {
 		wordKeys.push(Object.keys(pivotArr[i])[0]);
-		chrome.storage.sync.set(pivotArr[i]);
+		chrome.storage.local.set(pivotArr[i]);
 	}
-	chrome.storage.sync.set({"wordKeys": wordKeys});
+	chrome.storage.local.set({"wordKeys": wordKeys});
 }

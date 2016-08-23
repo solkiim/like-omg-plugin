@@ -13,5 +13,5 @@
 		"default_icon": "inactivelogo.png"
 	},
 	
-	"permissions": ["storage", "activeTab", "tabs", "http://*/*", "https://*/*"]
+	"permissions": ["storage", "unlimitedStorage", "activeTab", "tabs", "http://*/*", "https://*/*"]
 }
