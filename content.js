@@ -1,5 +1,6 @@
 var port = chrome.runtime.connect({name:"mycontentscript"});
-port.onMessage.addListener(function(message,sender){
+port.onMessage.addListener(function tabIDListener (message,sender){
+	port.onMessage.removeListener(tabIDListener);
 	console.log(message.vgTabId);
 });
 
